@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        .container {
+            display: block;
+            margin: 0 auto;
+            max-width: 540px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .row>* {
+            padding: 0;
+        }
+
+        .form-control {
+            width: 76%;
+            display: inline-block;
+        }
+
+        button {
+            position: relative;
+            top: -1px;
+        }
+
+        span {
+            position: relative;
+            top: 1px;
+        }
+
+        h2 {
+            margin: auto auto auto 30px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+            display: inline-block;
+        }
+
+        ul.col-8 {
+            position: relative;
+            left: 36px;
+        }
+
+        .container {
+            display: block;
+            margin: 0 auto;
+            max-width: 540px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .row>* {
+            padding: 0;
+        }
+
+        .form-control {
+            width: 76%;
+            display: inline-block;
+        }
+
+        button {
+            position: relative;
+            top: -1px;
+        }
+
+        span {
+            position: relative;
+            top: 1px;
+        }
+
+        h2 {
+            margin: auto auto auto 30px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+            display: inline-block;
+        }
+
+        ul.col-8 {
+            position: relative;
+            left: 36px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container row border border-dark border-2">
+        <h1 class="col border border-dark border-2">
+            Angra do Heroísmo
+        </h1>
+        <br />
+        <form class="current-city border border-dark border-2">
+            <span class="mb-3">
+                <input id="input" type="text" class="form-control" placeholder="Enter a city" />
+            </span>
+            <button type="submit" class="btn btn-primary">
+                Change city
+            </button>
+        </form>
+        <br />
+        <div class="border border-dark border-2">
+            <h2>
+                Mon
+            </h2>
+            <h3>
+                <span class=temperature>15</span><a id="C" href="">ºC</a>|<a id="F" href="">ºF</a>
+            </h3>
+        </div>
+        <br />
+        <div class="ul">
+            <ul class="col-3 border border-dark border-2">
+                <li>
+                    Tue
+                </li>
+                <li>
+                    Thu
+                </li>
+                <li>
+                    Wed
+                </li>
+                <li>
+                    Fri
+                </li>
+                <li>
+                    Sat
+                </li>
+            </ul>
+            <ul class="col-8 border border-dark border-2">
+                <li>
+                    🌧️ 13ºC
+                </li>
+                <li>
+                    🌥️ 15ºC
+                </li>
+                <li>
+                    🌧️ 14ºC
+                </li>
+                <li>
+                    🌧️ 14ºC
+                </li>
+                <li>
+                    🌥️ 15ºC
+                </li>
+            </ul>
+            <button type="submit" id="current-loc" class="col-12 btn btn-primary">
+                Current Location
+            </button>
+        </div>
+        <script>
+            let now = new Date();
+            let h2 = document.querySelector("h2");
+            let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            let day = days[now.getDay()];
+            let hour = now.getHours();
+            if (hour < 10) {
+                hour = `0${hour}`;
+            }
+            let minutes = now.getMinutes();
+            if (minutes < 10) {
+                minutes = `0${minutes}`;
+            }
+            h2.innerHTML = `${day} ${hour}:${minutes}`;
+
+            function showCity() {
+                event.preventDefault();
+                let h1 = document.querySelector("h1");
+                let searchedCity = document.querySelector("#input");
+                searchedCity.value = searchedCity.value.trim();
+                searchedCity.value = searchedCity.value.toUpperCase();
+                h1.innerHTML = searchedCity.value;
+                let apiKey = "f4a33d71e632267b45fbefa82839ee49";
+                let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity.value}&appid=${apiKey}&units=metric`;
+                axios.get(weatherURL).then(showTemp);
+            }
+
+            function showTemp(t) {
+                let temperature = document.querySelector(".temperature");
+                temperature.innerHTML = Math.round(t.data.main.temp);
+            }
+
+            let form = document.querySelector("form");
+            let searchedCity = document.querySelector("#input");
+            form.addEventListener("submit", showCity);
+
+            function convertCity(convertedCity) {
+                let cCity = convertedCity.data[0].name;
+                let h1 = document.querySelector("h1");
+                h1.innerHTML = cCity;
+                let apiKey = "f4a33d71e632267b45fbefa82839ee49";
+                let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${cCity}&appid=${apiKey}&units=metric`;
+                axios.get(weatherURL).then(showTemp);
+            }
+
+            function showPosition(position) {
+                let latitude = position.coords.latitude;
+                let longitude = position.coords.longitude;
+                let apiKey = "f4a33d71e632267b45fbefa82839ee49";
+                let convertCityURL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
+                axios.get(convertCityURL).then(convertCity);
+            }
+
+            function showTempCurrentLoc() {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+
+            let currentLocButton = document.querySelector("#current-loc");
+            currentLocButton.addEventListener("click", showTempCurrentLoc);
+        </script>
+</body>
+
+</html>
