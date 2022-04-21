@@ -14,11 +14,10 @@ h2.innerHTML = `${day} ${hour}:${minutes}`;
 
 function showCity() {
   event.preventDefault();
-  let h1 = document.querySelector("h1");
   let searchedCity = document.querySelector("#input");
   searchedCity.value = searchedCity.value.trim();
-  searchedCity.value = searchedCity.value.toUpperCase();
-  h1.innerHTML = searchedCity.value;
+  searchedCity.value = searchedCity.value.toLowerCase();
+
   let apiKey = "f4a33d71e632267b45fbefa82839ee49";
   let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity.value}&appid=${apiKey}&units=metric`;
   axios.get(weatherURL).then(showTemp);
@@ -27,6 +26,8 @@ function showCity() {
 function showTemp(t) {
   let temperature = document.querySelector(".temperature");
   temperature.innerHTML = Math.round(t.data.main.temp);
+  let h1 = document.querySelector("h1");
+  h1.innerHTML = t.data.name;
 }
 
 let form = document.querySelector("form");
