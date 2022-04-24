@@ -40,6 +40,10 @@ h3 {
   text-align: center;
 }
 
+div.description {
+  text-transform: capitalize;
+}
+
 #F,
 #C {
   text-decoration: none;

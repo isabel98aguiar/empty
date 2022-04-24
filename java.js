@@ -28,6 +28,12 @@ function showTemp(t) {
   temperature.innerHTML = Math.round(t.data.main.temp);
   let h1 = document.querySelector("h1");
   h1.innerHTML = t.data.name;
+  let humidity = document.querySelector(".humidity");
+  humidity.innerHTML = `Humidity: ${t.data.main.humidity}%`;
+  let wind = document.querySelector(".wind");
+  wind.innerHTML = `Wind Speed: ${t.data.wind.speed}m/s`;
+  let description = document.querySelector(".description");
+  description.innerHTML = t.data.weather[0].description;
 }
 
 let form = document.querySelector("form");
