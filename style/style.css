@@ -32,6 +32,10 @@ h2 {
   font-size: larger;
 }
 
+.r {
+  margin: auto 2px;
+}
+
 div.col-2 {
   font-size: small;
 }
