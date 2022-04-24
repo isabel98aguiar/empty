@@ -29,6 +29,11 @@ span {
 
 h2 {
   margin: auto auto auto 30px;
+  font-size: larger;
+}
+
+div.col-2 {
+  font-size: small;
 }
 
 h3 {
