@@ -34,6 +34,11 @@ function showTemp(t) {
   wind.innerHTML = `Wind Speed: ${t.data.wind.speed}m/s`;
   let description = document.querySelector(".description");
   description.innerHTML = t.data.weather[0].description;
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${t.data.weather[0].icon}@2x.png`
+  );
 }
 
 let form = document.querySelector("form");
