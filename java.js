@@ -63,3 +63,7 @@ function showTempCurrentLoc() {
 
 let currentLocButton = document.querySelector("#current-loc");
 currentLocButton.addEventListener("click", showTempCurrentLoc);
+
+let apiKey = "f4a33d71e632267b45fbefa82839ee49";
+let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${apiKey}&units=metric`;
+axios.get(weatherURL).then(showTemp);
