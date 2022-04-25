@@ -32,6 +32,10 @@ h2 {
   font-size: larger;
 }
 
+#icon {
+  max-width: 45px;
+}
+
 .r {
   margin: auto 2px;
 }
