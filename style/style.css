@@ -32,6 +32,18 @@ h2 {
   font-size: larger;
 }
 
+a.active {
+  text-decoration: none;
+  color: black;
+}
+a.active:hover {
+  cursor: default;
+}
+
+sup {
+  font-size: medium;
+}
+
 #icon {
   max-width: 45px;
 }
@@ -50,11 +62,6 @@ h3 {
 
 div.description {
   text-transform: capitalize;
-}
-
-#F,
-#C {
-  text-decoration: none;
 }
 
 ul {

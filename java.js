@@ -74,6 +74,8 @@ let celsiusTemp = null;
 
 function showTempC(event) {
   event.preventDefault();
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
   let temperature = document.querySelector(".temperature");
   temperature.innerHTML = Math.round(celsiusTemp);
 }
@@ -83,12 +85,16 @@ function showTempF(event) {
   let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
   let temperature = document.querySelector(".temperature");
   temperature.innerHTML = Math.round(fahrenheitTemp);
-  let celsius = document.querySelector("#C");
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
   celsius.addEventListener("click", showTempC);
 }
 
 let fahrenheit = document.querySelector("#F");
+let celsius = document.querySelector("#C");
 fahrenheit.addEventListener("click", showTempF);
+celsius.classList.add("active");
+fahrenheit.classList.remove("active");
 
 let apiKey = "f4a33d71e632267b45fbefa82839ee49";
 let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${apiKey}&units=metric`;
