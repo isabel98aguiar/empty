@@ -12,7 +12,7 @@ if (minutes < 10) {
 }
 h2.innerHTML = `${day} ${hour}:${minutes}`;
 
-function showCity() {
+function showCity(event) {
   event.preventDefault();
   let searchedCity = document.querySelector("#input");
   searchedCity.value = searchedCity.value.trim();
@@ -26,6 +26,7 @@ function showCity() {
 function showTemp(t) {
   let temperature = document.querySelector(".temperature");
   temperature.innerHTML = Math.round(t.data.main.temp);
+  celsiusTemp = t.data.main.temp;
   let h1 = document.querySelector("h1");
   h1.innerHTML = t.data.name;
   let humidity = document.querySelector(".humidity");
@@ -68,6 +69,26 @@ function showTempCurrentLoc() {
 
 let currentLocButton = document.querySelector("#current-loc");
 currentLocButton.addEventListener("click", showTempCurrentLoc);
+
+let celsiusTemp = null;
+
+function showTempC(event) {
+  event.preventDefault();
+  let temperature = document.querySelector(".temperature");
+  temperature.innerHTML = Math.round(celsiusTemp);
+}
+
+function showTempF(event) {
+  event.preventDefault();
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  let temperature = document.querySelector(".temperature");
+  temperature.innerHTML = Math.round(fahrenheitTemp);
+  let celsius = document.querySelector("#C");
+  celsius.addEventListener("click", showTempC);
+}
+
+let fahrenheit = document.querySelector("#F");
+fahrenheit.addEventListener("click", showTempF);
 
 let apiKey = "f4a33d71e632267b45fbefa82839ee49";
 let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${apiKey}&units=metric`;
