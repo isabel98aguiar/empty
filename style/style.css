@@ -13,6 +13,13 @@ h1 {
   text-align: center;
 }
 
+.description,
+.wind,
+.humidity {
+  font-size: small;
+  margin-top: 4px;
+}
+
 .row > * {
   padding: 0;
 }
