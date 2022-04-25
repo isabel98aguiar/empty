@@ -2,6 +2,11 @@
   display: block;
   margin: 0 auto;
   max-width: 540px;
+  font-family: "Roboto Slab", serif;
+}
+
+.border {
+  border-radius: 5px;
 }
 
 h1 {
